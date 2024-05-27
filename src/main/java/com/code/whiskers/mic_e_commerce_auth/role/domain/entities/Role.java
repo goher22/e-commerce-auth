@@ -10,6 +10,12 @@ public class Role {
     private String name;
     private Set<User> users = new HashSet<>();
 
+    public Role(){}
+
+    public Role(String name) {
+        this.name = name;
+    }
+
     public Role(Long id, String name) {
         this.id = id;
         this.name = name;
@@ -23,7 +29,7 @@ public class Role {
         return name;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public void setName(String name) {
+        this.name = name;
     }
 }
