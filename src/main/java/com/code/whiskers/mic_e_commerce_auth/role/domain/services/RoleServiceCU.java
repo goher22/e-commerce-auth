@@ -8,6 +8,6 @@ public interface RoleServiceCU {
     public ResponseEntity<ResultResponse<Role>> getRoles(int page, int size, String search, String filter);
     public ResponseEntity<Role> getRole(Long id);
     public ResponseEntity<Role> postRole(Role role);
-    public ResponseEntity<Role> updateRole(Role role, Long id);
+    public ResponseEntity<Role> putRole(Role role, Long id);
     public ResponseEntity<Role> deleteRole(Long id);
 }
