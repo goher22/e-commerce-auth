@@ -6,6 +6,6 @@ import com.code.whiskers.mic_e_commerce_auth.user.domain.response.LoginResponse;
 import org.springframework.http.ResponseEntity;
 
 public interface UserServiceCU {
-    public ResponseEntity<LoginResponse> authenticateUser(String username, String password);
+    public ResponseEntity<LoginResponse> authenticateUser(User user);
     public ResponseEntity<String> registerUser(User user);
 }
