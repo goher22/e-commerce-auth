@@ -1,5 +1,5 @@
-FROM eclipse-temurin:17-jdk-alpine
-VOLUME /tmp
-RUN mkdir /opt/app
-COPY ./target/*.jar /opt/app
-CMD ["java","-jar","/opt/app/mic-e-commerce-auth-1.0.0.jar"]
+FROM openjdk:17-jdk-slim
+ARG JAR_FILE=target/mic-e-commerce-auth-1.0.0.jar
+COPY ${JAR_FILE} app_auth.jar
+EXPOSE 8000
+ENTRYPOINT [ "java", "-jar", "app_auth.jar" ]
