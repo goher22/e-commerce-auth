@@ -17,21 +17,26 @@ public class UserModelDTO extends User {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "role_id")
+    private Long roleId;
+
     public UserModelDTO(){
         super();
     }
 
-    public UserModelDTO(Long id, String username, String password){
+    public UserModelDTO(Long id, String username, String password, Long roleId){
         super(id, username, password);
         this.id = id;
         this.username = username;
         this.password = password;
+        this.roleId = roleId;
     }
 
-    public UserModelDTO(String username, String password){
+    public UserModelDTO(String username, String password, Long roleId){
         super(username, password);
         this.username = username;
         this.password = password;
+        this.roleId = roleId;
     }
 
     @Override
@@ -42,5 +47,10 @@ public class UserModelDTO extends User {
     @Override
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public Long getRoleId() {
+        return roleId;
     }
 }

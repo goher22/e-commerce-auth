@@ -9,10 +9,8 @@ public class User {
     private Long id;
     private String username;
     private String password;
+    private Long roleId;
     private boolean enabled;
-
-
-    private Set<Role> roles = new HashSet<>();
 
     public User(){
 
@@ -21,12 +19,14 @@ public class User {
     public User(String username, String password){
         this.username = username;
         this.password = password;
+        this.roleId = 1L;
     }
 
     public User(Long id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.roleId = 1L;
         this.enabled = true;
     }
 
@@ -42,11 +42,12 @@ public class User {
         return password;
     }
 
+    public Long getRoleId() {
+        return roleId;
+    }
+
     public boolean isEnabled() {
         return enabled;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
 }

@@ -23,7 +23,7 @@ public class UserMysqlAdapter implements UserPortOut {
 
     @Override
     public User saveUser(User user) {
-        UserModelDTO userModelDTO = new UserModelDTO(user.getUsername(), user.getPassword());
+        UserModelDTO userModelDTO = new UserModelDTO(user.getUsername(), user.getPassword(), user.getRoleId());
         return userRepositoryDTO.save(userModelDTO);
     }
 }
