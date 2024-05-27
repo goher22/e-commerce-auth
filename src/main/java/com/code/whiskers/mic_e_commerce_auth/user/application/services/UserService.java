@@ -7,19 +7,20 @@ import com.code.whiskers.mic_e_commerce_auth.user.domain.response.LoginResponse;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Date;
 
 public class UserService implements UserPortIn {
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private BCryptPasswordEncoder passwordEncoder;
     private final UserPortOut userPortOut;
     private final String secretKey = "bZbBY87UVfaF";
 
-    public UserService(UserPortOut userPortOut) {
+    public UserService(UserPortOut userPortOut, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userPortOut = userPortOut;
+        this.passwordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
@@ -29,7 +30,7 @@ public class UserService implements UserPortIn {
             User user = this.userPortOut.findByUsername(username);
             if(user != null){
                 if(this.passwordEncoder.matches(password, user.getPassword())){
-
+                    Long id = user.getId();
                     int minuto = 30;
                     long tiempoExpiracion = (long) minuto * 60L * 1000L;
                     Date fechaActual = new Date();
@@ -64,7 +65,7 @@ public class UserService implements UserPortIn {
             }
 
         }catch (Exception e){
-            throw new IllegalArgumentException("Error saving user");
+            throw new RuntimeException("Error saving user");
         }
     }
 
